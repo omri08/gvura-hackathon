@@ -6,3 +6,4 @@
  - Artume Pichersky
  - Amit Mizrahi
  - Avia Cohen
+ - Shir Mashiach
