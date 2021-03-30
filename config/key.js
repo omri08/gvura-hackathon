@@ -1,5 +1,3 @@
-import * as firebase from 'firebase';
-
 const firebaseConfig = {
     apiKey: "AIzaSyBEGey1nJI8V6lZbSKh_JiT9O1AEZvtvOE",
     authDomain: "gvura-hackathon.firebaseapp.com",
@@ -10,9 +8,3 @@ const firebaseConfig = {
     appId: "1:194146626330:web:6bb51ec1b1c80f8af29aa3",
     measurementId: "G-XMGFW9FTFW"
 };
-
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-
-export { firebase };
