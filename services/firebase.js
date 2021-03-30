@@ -13,6 +13,13 @@ export async function registration(email, password, lastName, firstName) {
       lastName: lastName,
       firstName: firstName,
     });
+
+    db.collection('profiles').doc(currentUser.uid).set({
+      isAvailable: false,
+      location: null,
+      score: 0,
+      preference: null,
+    });
     Alert.alert('Registration complete');
   } catch (err) {
     Alert.alert('There is something wrong!!!!', err.message);
