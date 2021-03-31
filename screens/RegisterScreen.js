@@ -24,10 +24,15 @@ export default function RegisterScreen() {
         <TextBox content="סיסמא"></TextBox>
         <TextBox content="אימות סיסמא"></TextBox>
       </View>
-
+      <KeyboardAvoidingView
+        behavior="height"
+        style={styles.container}
+        enabled={false}
+      >
       <View style={styles.buttonContainer}>
         <StyledRegButton content="הרשמה"></StyledRegButton>
       </View>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '72%',
     width: '100%',
-    right: '5%',
+    alignItems: "center",
   },
   textContainer: {
     position: 'absolute',
@@ -56,5 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     flexDirection: 'column',
+    alignItems: 'center',
   },
+  
 });
