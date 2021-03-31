@@ -4,7 +4,11 @@ import { StyleSheet, Dimensions, Text, View, TextInput } from 'react-native';
 import styles from './styles';
 
 const TextBox = (props) => {
-  const { content, reg } = props;
+  const { content } = props;
+  let onChangeText = {};
+  if (props.onChangeText) {
+    onChangeText = props.onChangeText;
+  }
   return (
     <View style={styles.container}>
       <TextInput

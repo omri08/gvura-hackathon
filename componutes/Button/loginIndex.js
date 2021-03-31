@@ -11,10 +11,14 @@ import {
 import textStyles from '../textStyles.js';
 
 const StyledButton = (props) => {
-  const { content, preeFunc } = props;
+  const { content } = props;
+  let onPress = {};
+  if (props.onPress) {
+    onPress = props.onPress;
+  }
   return (
     <View style={styles.container}>
-      <Pressable style={styles.logInButton}>
+      <Pressable style={styles.logInButton} onPress={onPress}>
         <Text style={textStyles.logIn}> {content}</Text>
       </Pressable>
     </View>
