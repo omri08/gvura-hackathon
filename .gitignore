@@ -1,7 +1,7 @@
 node_modules/**/*
 .expo/*
 .expo-shared/*
-.vscpde/*
+.vscode/*
 .config/key.js
 npm-debug.*
 *.jks
