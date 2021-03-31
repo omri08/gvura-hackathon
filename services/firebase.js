@@ -26,12 +26,11 @@ export async function registration(email, password, lastName, firstName) {
   }
 }
 
-export async function signIn(email, password) {
+export async function LogIn(email, password) {
   try {
-   await firebase
+    await firebase
       .auth()
-      .signInWithEmailAndPassword(email, password);
-    Alert.alert('SignIn complete');
+      .LogInWithEmailAndPassword(email, password);
   } catch (err) {
     Alert.alert("There is something wrong!", err.message);
   }
