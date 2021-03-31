@@ -29,9 +29,9 @@ export default function RegisterScreen() {
         style={styles.container}
         enabled={false}
       >
-      <View style={styles.buttonContainer}>
-        <StyledRegButton content="הרשמה"></StyledRegButton>
-      </View>
+        <View style={styles.buttonContainer}>
+          <StyledRegButton content="הרשמה"></StyledRegButton>
+        </View>
       </KeyboardAvoidingView>
     </ImageBackground>
   );
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '72%',
     width: '100%',
-    alignItems: "center",
+    alignItems: 'center',
   },
   textContainer: {
     position: 'absolute',
@@ -63,5 +63,4 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  
 });
