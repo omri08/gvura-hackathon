@@ -9,6 +9,11 @@
   },
   "dependencies": {
 <<<<<<< HEAD
+    "axios": "^0.21.1",
+    "expo": "~40.0.0",
+    "expo-notifications": "~0.8.2",
+=======
+<<<<<<< HEAD
     "@expo-google-fonts/dev": "^0.1.0",
 =======
     "@react-navigation/native": "^5.9.3",
@@ -16,6 +21,7 @@
 >>>>>>> 59647c4808bb3de07b12bf8289b790fd5bfb7cd9
     "expo": "~40.0.0",
     "expo-font": "~8.4.0",
+>>>>>>> f9fb53726ae0eab34c41b312e9cd3a9472c20c4d
     "expo-status-bar": "~1.0.3",
     "firebase": "7.9.0",
     "react": "16.13.1",

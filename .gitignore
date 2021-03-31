@@ -2,7 +2,7 @@ node_modules/**/*
 .expo/*
 .expo-shared/*
 .vscode/*
-.config/key.js
+config/key.js
 npm-debug.*
 *.jks
 *.p8
