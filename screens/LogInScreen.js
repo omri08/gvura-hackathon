@@ -22,6 +22,14 @@ export default function LogInScreen({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
+
+  const onPress = (email,password) => {
+      if(!email || ! password)
+        Alert.alert("Email or Password can not be emptry")
+      else 
+      authContext.signIn(email, password)
+  }
+
   return (
     <ImageBackground source={backGroundImage} style={styles.container}>
       <Rect />
@@ -37,7 +45,7 @@ export default function LogInScreen({ navigation }) {
 
           <View style={styles.buttonContainer}>
             <StyledButton
-              onPress={() => authContext.signIn(email, password)}
+              onPress={onPress}
               content={'התחברות'}
             ></StyledButton>
           </View>
@@ -62,6 +70,9 @@ export default function LogInScreen({ navigation }) {
     </ImageBackground>
   );
 }
+
+
+
 
 const styles = StyleSheet.create({
   image: {
