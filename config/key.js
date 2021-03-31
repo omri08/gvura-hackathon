@@ -1,4 +1,4 @@
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyBEGey1nJI8V6lZbSKh_JiT9O1AEZvtvOE",
   authDomain: "gvura-hackathon.firebaseapp.com",
   databaseURL: "https://gvura-hackathon-default-rtdb.europe-west1.firebasedatabase.app",
