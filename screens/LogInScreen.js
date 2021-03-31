@@ -7,37 +7,41 @@ import logo from '../assets/images/logo.png'
 import Shadow from '../assets/images/Shadow.js'
 
 import TextBox from '../componutes/TextBox/index'
-import StyledButton from '../componutes/Button/index'
+import StyledButton from '../componutes/Button/loginIndex'
 
 
-export default function LogInScreen ()
+export default function LogInScreen ({navigation})
 {
-    const onTextPress = ()=>{
-       return;
-    }
-
+    // function onPressText(){
+    //     console.log("hi")
+    // }
     return (
+    <View style={styles.container}>
+
     <ImageBackground 
         source = {backGroundImage}
         style = {styles.container}>
         <Rect />
         <Image source={logo} style={styles.logo}/>
+        <Shadow style={styles.shadow} />
+    </ImageBackground>
 
 
         <View style={styles.register}>
             <Text>
-                <Text onPress={onTextPress} style={styles.register}>Type here to register</Text>
+                <Text style={styles.register, {color:'#FFFFFF'}}>לא רשום? </Text>
+                <Text onPress={() => navigation.navigate("Register")} style={styles.register}>פתח משתמש </Text>
             </Text>
         </View>
         <View style={styles.textContainer}>
-            <TextBox content={'Email'}> </TextBox>
-            <TextBox content={'Password'}></TextBox>
+            <TextBox content={'אימייל'}> </TextBox>
+            <TextBox content={'סיסמא'}></TextBox>
         </View>
         <View style={styles.buttonContainer}>
-            <StyledButton content={'Log In'}></StyledButton>
+            <StyledButton content={'התחברות'}></StyledButton>
         </View>
-        <Shadow style={styles.shadow} />
-        </ImageBackground>
+        </View>
+        
     
     );
 }
@@ -45,8 +49,9 @@ export default function LogInScreen ()
 const styles = StyleSheet.create({
     buttonContainer:{
         position: 'absolute',
-        top: 10 ,
+        top: "69%" ,
         width: '100%'
+        
     },
     image: {
         width:'100%',
@@ -71,7 +76,8 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         fontWeight: 'bold',
         color: '#0048FC',
-        textDecorationLine: 'underline'
+        textDecorationLine: 'underline',
+        fontSize: 15
     },
     textContainer:{
         position: 'absolute',

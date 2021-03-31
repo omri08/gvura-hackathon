@@ -8,14 +8,27 @@ const styles = StyleSheet.create({
     justifyContent:'center'
   },
   logInButton: {
-      height: 200,
-      width: 100,
-      borderRadius: 20,
+      height: 60,
+      width: 220,
+      borderRadius: 10,
       justifyContent: 'center',
       borderWidth: 2,
-      borderColor: '#000000',
+      borderColor: '#002A94',
       alignItems: 'center',
-      backgroundColor: "#000000",
+      backgroundColor: "#55C4FF",
+      padding: 8
+  },
+  registerButton:{
+      height: 50,
+      width: 200,
+      borderRadius: 10,
+      justifyContent: 'center',
+      borderWidth: 2,
+      borderColor: '#002A94',
+      alignItems: 'center',
+      backgroundColor: "#55C4FF",
       padding: 8
   }
 })
+
+export default styles;
