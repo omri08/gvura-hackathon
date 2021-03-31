@@ -5,7 +5,9 @@ import {
   View,
   ImageBackground,
   Image,
-  KeyboardAvoidingView,
+  ActivityIndicator,
+  LogBox,
+  Alert,
 } from 'react-native';
 import backGroundImage from '../assets/images/logIn.png';
 import Rect from '../assets/images/Rectangle.js';
@@ -14,48 +16,54 @@ import Shadow from '../assets/images/Shadow.js';
 
 import TextBox from '../componutes/TextBox/index';
 import StyledButton from '../componutes/Button/loginIndex';
-
+import { AuthContext } from '../context';
 export default function LogInScreen({ navigation }) {
+  const { authContext, isLoading, userData } = React.useContext(AuthContext);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   return (
     <ImageBackground source={backGroundImage} style={styles.container}>
       <Rect />
       <Image source={logo} style={styles.logo} />
       <Shadow style={styles.shadow} />
 
-      <View style={styles.register}>
-        <Text>
-          <Text style={(styles.register, { color: '#FFFFFF' })}>לא רשום? </Text>
-          <Text
-            onPress={() => navigation.navigate('Register')}
-            style={styles.register}
-          >
-            פתח משתמש
-          </Text>
-        </Text>
-      </View>
-      <View style={styles.textContainer}>
-        <TextBox content={'אימייל'}> </TextBox>
-        <TextBox content={'סיסמא'}></TextBox>
-      </View>
-      <KeyboardAvoidingView
-        behavior="height"
-        style={styles.container}
-        enabled={false}
-      >
-        <View style={styles.buttonContainer}>
-          <StyledButton content={'התחברות'}></StyledButton>
+      {!isLoading ? (
+        <View style={styles.form}>
+          <View style={styles.inputs}>
+            <TextBox onChangeText={setEmail} content={'אימייל'} />
+            <TextBox onChangeText={setPassword} content={'סיסמא'} />
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <StyledButton
+              onPress={() => authContext.signIn(email, password)}
+              content={'התחברות'}
+            ></StyledButton>
+          </View>
+
+          <View style={styles.register}>
+            <Text style={(styles.register, { color: '#FFFFFF' })}>
+              לא רשום?
+            </Text>
+            <Text
+              onPress={() => navigation.navigate('Register')}
+              style={styles.register}
+            >
+              פתח משתמש
+            </Text>
+          </View>
         </View>
-      </KeyboardAvoidingView>
+      ) : (
+        <View style={[styles.spinner]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    position: 'absolute',
-    top: '60%',
-    width: '100%',
-  },
   image: {
     width: '100%',
     height: '100%',
@@ -63,9 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   register: {
-    width: '100%',
-    bottom: '5%',
-    position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
@@ -73,10 +78,17 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     fontSize: 15,
   },
-  textContainer: {
-    position: 'absolute',
-    top: '50%',
-    width: '100%',
+
+  spinner: {
+    marginTop: 10,
+  },
+
+  form: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 60,
   },
   shadow: {
     position: 'absolute',
