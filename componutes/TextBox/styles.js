@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 10,
     alignItems: 'center',
-    justifyContent:'center'
+    justifyContent: 'center',
   },
   textBox: {
     height: 50,
@@ -15,14 +15,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#000000',
     alignItems: 'center',
-    backgroundColor: "#ffffff",
-    padding: 8
+    backgroundColor: '#ffffff',
+    padding: 8,
   },
   text: {
     fontSize: 12,
     fontWeight: '500',
     textTransform: 'uppercase',
-  }
+  },
 });
 
 export default styles;

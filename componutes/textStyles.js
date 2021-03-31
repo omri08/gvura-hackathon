@@ -4,9 +4,8 @@ const textStyles = StyleSheet.create({
   logIn: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: "#FFFFFF"
-  }
-  
-})
+    color: '#FFFFFF',
+  },
+});
 
 export default textStyles;
