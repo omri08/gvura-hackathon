@@ -1,5 +1,5 @@
 import React from 'react';
-import {logIn} from "../services/firebase"
+import { logIn } from '../services/firebase';
 import {
   StyleSheet,
   Text,
@@ -17,56 +17,65 @@ import Shadow from '../assets/images/Shadow.js';
 import TextBox from '../components/TextBox/index';
 import StyledButton from '../components/Button/loginIndex';
 
-export default function LogInScreen( props) {
+export default function LogInScreen(props) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isLoading, setLoading] = React.useState(false)
+  const [isLoading, setLoading] = React.useState(false);
 
   const onPress = () => {
-     setLoading(true)
-  }
+    setLoading(true);
+  };
 
   React.useEffect(() => {
     async function loadData() {
-      if(isLoading) {
-        const data = await logIn(email,password)
-         props.setData(data)
+      if (isLoading) {
+        const data = await logIn(email, password);
+        props.setData(data);
       }
     }
 
-    loadData()
-  },[isLoading])
+    loadData();
+  }, [isLoading]);
 
   return (
     <ImageBackground source={backGroundImage} style={styles.container}>
       <Rect />
       <Image source={logo} style={styles.logo} />
-      <Shadow style={styles.shadow} />
-
       {!isLoading ? (
-        <View style={styles.form}>
-          <View style={styles.inputs}>
-            <TextBox onChangeText={(text) => setEmail(text)} content={'אימייל'} />
-            <TextBox onChangeText={(text) => setPassword(text)} content={'סיסמא'} />
-          </View>
+        <View style={{ flex: 1 }}>
+          <Shadow style={styles.shadow} />
+          <View style={styles.form}>
+            <View style={styles.inputs}>
+              <TextBox
+                onChangeText={(text) => setEmail(text)}
+                content={'אימייל'}
+                secureTextEntry={false}
+              />
+              <TextBox
+                secureTextEntry={true}
+                onChangeText={(text) => setPassword(text)}
+                content={'סיסמא'}
+              />
+            </View>
 
-          <View style={styles.buttonContainer}>
-            <StyledButton
-              onPress={() => onPress()}
-              content={'התחברות'}
-            ></StyledButton>
-          </View>
+            <View style={styles.buttonContainer}>
+              <StyledButton
+                onPress={() => onPress()}
+                content={'התחברות'}
+              ></StyledButton>
+            </View>
 
-          <View style={styles.register}>
-            <Text style={(styles.register, { color: '#FFFFFF' })}>
-              לא רשום?
-            </Text>
-            <Text
-              onPress={() => navigation.navigate('Register')}
-              style={styles.register}
-            >
-              פתח משתמש
-            </Text>
+            <View style={styles.register}>
+              <Text style={(styles.register, { color: '#FFFFFF' })}>
+                לא רשום?
+              </Text>
+              <Text
+                onPress={() => navigation.navigate('Register')}
+                style={styles.register}
+              >
+                פתח משתמש
+              </Text>
+            </View>
           </View>
         </View>
       ) : (
@@ -77,9 +86,6 @@ export default function LogInScreen( props) {
     </ImageBackground>
   );
 }
-
-
-
 
 const styles = StyleSheet.create({
   image: {
@@ -104,9 +110,7 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingBottom: 60,
   },
   shadow: {
     position: 'absolute',
@@ -121,7 +125,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#2db7ff',
     flexDirection: 'column',
     alignItems: 'center',
   },

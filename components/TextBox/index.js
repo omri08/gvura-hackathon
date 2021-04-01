@@ -16,7 +16,8 @@ const TextBox = (props) => {
         placeholder={content}
         underlineColorAndroid="transparent"
         autoCapitalize="none"
-        onChangeText = {onChangeText}
+        onChangeText={onChangeText}
+        secureTextEntry={props.secureTextEntry}
       />
     </View>
   );
