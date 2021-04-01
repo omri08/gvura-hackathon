@@ -1,4 +1,5 @@
 import React from 'react';
+import {logIn} from "../services/firebase"
 import {
   StyleSheet,
   Text,
@@ -6,7 +7,6 @@ import {
   ImageBackground,
   Image,
   ActivityIndicator,
-  LogBox,
   Alert,
 } from 'react-native';
 import backGroundImage from '../assets/images/logIn.png';
@@ -14,21 +14,28 @@ import Rect from '../assets/images/Rectangle.js';
 import logo from '../assets/images/logo.png';
 import Shadow from '../assets/images/Shadow.js';
 
-import TextBox from '../componutes/TextBox/index';
-import StyledButton from '../componutes/Button/loginIndex';
-import { AuthContext } from '../context';
-export default function LogInScreen({ navigation }) {
-  const { authContext, isLoading, userData } = React.useContext(AuthContext);
+import TextBox from '../components/TextBox/index';
+import StyledButton from '../components/Button/loginIndex';
+
+export default function LogInScreen( props) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [isLoading, setLoading] = React.useState(false)
 
-
-  const onPress = (email,password) => {
-      if(!email || ! password)
-        Alert.alert("Email or Password can not be emptry")
-      else 
-      authContext.signIn(email, password)
+  const onPress = () => {
+     setLoading(true)
   }
+
+  React.useEffect(() => {
+    async function loadData() {
+      if(isLoading) {
+        const data = await logIn(email,password)
+         props.setData(data)
+      }
+    }
+
+    loadData()
+  },[isLoading])
 
   return (
     <ImageBackground source={backGroundImage} style={styles.container}>
@@ -39,13 +46,13 @@ export default function LogInScreen({ navigation }) {
       {!isLoading ? (
         <View style={styles.form}>
           <View style={styles.inputs}>
-            <TextBox onChangeText={setEmail} content={'אימייל'} />
-            <TextBox onChangeText={setPassword} content={'סיסמא'} />
+            <TextBox onChangeText={(text) => setEmail(text)} content={'אימייל'} />
+            <TextBox onChangeText={(text) => setPassword(text)} content={'סיסמא'} />
           </View>
 
           <View style={styles.buttonContainer}>
             <StyledButton
-              onPress={onPress}
+              onPress={() => onPress()}
               content={'התחברות'}
             ></StyledButton>
           </View>

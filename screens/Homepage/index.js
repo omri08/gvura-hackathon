@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, ScrollView, Image, Button, Switch } from 'react-native';
+import { View, Text, ScrollView, Image, Button, Switch, Alert } from 'react-native';
 import { Entypo, MaterialCommunityIcons, Ionicons    } from '@expo/vector-icons';
 import styles from './styles';
-import UserLocation from '../Location/UserLocation';
+import UserLocation from '../../components/Location/UserLocation';
 
-const Homepage = (props) => {
+const Homepage = ({userData}) => {
 
+  const displayName = `שלום ${userData.name}`
 
   return (
     <View style={styles.container}>
@@ -19,9 +20,9 @@ const Homepage = (props) => {
 
         <View style={styles.footer}>
             <View style={styles.nameContainer}>
-              <Text style={styles.name}>שלום טל</Text>
+              <Text style={styles.name}>{displayName}</Text>
             </View>
-           <UserLocation/>
+           <UserLocation userData={userData}/>
 
             <View style={styles.moreDetails}>
               <Text style={styles.moreDetailsText}>כאשר אתה לא זמין לא תקבל עדכונים על התנדבויות</Text>

@@ -38,3 +38,30 @@ export async function logIn(email, password) {
   userData = userData.data();
   return { ...userData, uid: user.uid };
 }
+
+export async function updateStatus(isAvailable, location, uid) {
+  try {
+    console.log('here');
+    console.log(isAvailable, location, uid);
+    if (isAvailable) {
+      const { latitude, longitude } = location.coords;
+      console.log('here');
+      console.log(latitude, longitude);
+      const test = new firebase.firestore.GeoPoint(
+        Number(latitude),
+        Number(longitude),
+      );
+      console.log(test);
+      await firebase.firestore().collection('profiles').doc(uid).update({
+        location: test,
+        isAvailable,
+      });
+    } else {
+      await firebase.firestore().collection('profiles').doc(uid).update({
+        isAvailable,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}

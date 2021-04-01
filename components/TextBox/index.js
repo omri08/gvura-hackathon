@@ -16,6 +16,7 @@ const TextBox = (props) => {
         placeholder={content}
         underlineColorAndroid="transparent"
         autoCapitalize="none"
+        onChangeText = {onChangeText}
       />
     </View>
   );
