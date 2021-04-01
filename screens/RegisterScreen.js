@@ -6,50 +6,67 @@ import {
   ImageBackground,
   Image,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import Rect from '../assets/images/Rectangle.js';
 import logo from '../assets/images/logo.png';
 
 import TextBox from '../components/TextBox/index';
 import StyledRegButton from '../components/Button/registerIndex';
+import { registration } from '../services/firebase';
+export default function RegisterScreen({ userData }) {
+  const [email, setEmail] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [password2, setPassword2] = React.useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
 
-export default function RegisterScreen() {
+  const register = async () => {
+    setIsLoading(true);
+    if (email && name && password && password == password2) {
+      const data = await registration(email, password, name);
+      console.log(data);
+      userData(data);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <ImageBackground style={styles.container}>
       <Rect />
       <Image source={logo} style={styles.logo} />
       <View style={styles.textContainer}>
-        <TextBox content="שם מלא" reg={false}></TextBox>
-        <TextBox content="אימייל"></TextBox>
-        <TextBox content="סיסמא"></TextBox>
-        <TextBox content="אימות סיסמא"></TextBox>
+        <TextBox
+          onChangeText={(text) => setName(text)}
+          content="שם מלא"
+          reg={false}
+        ></TextBox>
+        <TextBox
+          onChangeText={(text) => setEmail(text)}
+          content="אימייל"
+        ></TextBox>
+        <TextBox
+          onChangeText={(text) => setPassword(text)}
+          content="סיסמא"
+        ></TextBox>
+        <TextBox
+          onChangeText={(text) => setPassword2(text)}
+          content="אימות סיסמא"
+        ></TextBox>
       </View>
-      <KeyboardAvoidingView
-        behavior="height"
-        style={styles.container}
-        enabled={false}
-      >
-        <View style={styles.buttonContainer}>
-          <StyledRegButton content="הרשמה"></StyledRegButton>
-        </View>
-      </KeyboardAvoidingView>
+
+      <View style={styles.buttonContainer}>
+        <StyledRegButton onPress={() => register()} content="הרשמה" />
+      </View>
     </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    position: 'absolute',
-    top: '72%',
-    width: '100%',
     alignItems: 'center',
   },
-  textContainer: {
-    position: 'absolute',
-    top: '32%',
-    right: '15%',
-    width: '100%',
-  },
+  textContainer: {},
   logo: {
     position: 'absolute',
     height: 72.5,

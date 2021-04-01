@@ -12,9 +12,15 @@ import textStyles from '../textStyles.js';
 
 const StyledRegButton = (props) => {
   const { content, preeFunc } = props;
+
+  let onPress = {};
+  if (props.onPress) {
+    onPress = props.onPress;
+  }
+
   return (
     <View style={styles.container}>
-      <Pressable style={styles.registerButton}>
+      <Pressable onPress={onPress} style={styles.registerButton}>
         <Text style={textStyles.logIn}> {content}</Text>
       </Pressable>
     </View>
