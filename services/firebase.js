@@ -41,12 +41,8 @@ export async function logIn(email, password) {
 
 export async function updateStatus(isAvailable, location, uid) {
   try {
-    console.log('here');
-    console.log(isAvailable, location, uid);
     if (isAvailable) {
       const { latitude, longitude } = location.coords;
-      console.log('here');
-      console.log(latitude, longitude);
       const test = new firebase.firestore.GeoPoint(
         Number(latitude),
         Number(longitude),

@@ -32,7 +32,6 @@ const UserLocation = ({ userData }) => {
       }
 
       let tempLocation = await Location.getCurrentPositionAsync({});
-      console.log(tempLocation);
       setLocation(tempLocation);
     })();
   };
