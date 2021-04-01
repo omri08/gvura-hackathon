@@ -43,13 +43,12 @@ export async function updateStatus(isAvailable, location, uid) {
   try {
     if (isAvailable) {
       const { latitude, longitude } = location.coords;
-      const test = new firebase.firestore.GeoPoint(
+      const geoPoint = new firebase.firestore.GeoPoint(
         Number(latitude),
         Number(longitude),
       );
-      console.log(test);
       await firebase.firestore().collection('profiles').doc(uid).update({
-        location: test,
+        location: geoPoint,
         isAvailable,
       });
     } else {
